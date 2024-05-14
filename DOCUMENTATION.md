@@ -76,5 +76,8 @@ Color(0,0,0,0)
 
 ※ShaderGraph・コードベースどちらも利用できます。\
 ShaderGraphでは「Unlit」「FullScreen」を推奨しています。\
+(Alphaの処理が異なります)
+
+
 「_MainTex」に1つ前のレイヤー画像\
 「_MaskTex」にマスクレイヤー画像が渡されます。
