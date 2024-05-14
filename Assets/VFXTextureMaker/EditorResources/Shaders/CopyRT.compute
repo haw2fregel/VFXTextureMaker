@@ -1,0 +1,13 @@
+#pragma kernel CsMain
+
+RWTexture2D<float4> _Result;
+float2 _Resolution;
+Texture2D<float4> _DrawTex;
+
+[numthreads(32, 32, 1)]
+void CsMain(uint3 id : SV_DispatchThreadID)
+{
+    int2 ids = int2(asint(id.x), asint(id.y));
+    if (ids.x >= int(_Resolution.x) || ids.y >= int(_Resolution.y)) return;
+    _Result[ids] = _DrawTex[ids];
+}

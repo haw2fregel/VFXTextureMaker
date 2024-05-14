@@ -1,0 +1,23 @@
+{
+  "name": "jp.haw2fregel.vfx-texture-maker",
+  "displayName": "VFXTextureMaker",
+  "version": "1.0.0",
+  "unity": "2022.3",
+  "documentationUrl": "https://github.com/haw2fregel/VFXTextureMaker/blob/v1.0.0/README.md",
+  "changelogUrl": "https://github.com/haw2fregel/VFXTextureMaker/blob/v1.0.0/CHANGELOG.md",
+  "licensesUrl": "https://github.com/haw2fregel/VFXTextureMaker/blob/v1.0.0/LICENSE",
+  "description": "Generate VFX Texture",
+  "dependencies": {},
+  "author": {
+    "name": "haw2fregel",
+    "email": "haw2fregel@gmail.com",
+    "url": "https://github.com/haw2fregel"
+  },
+  "samples": [
+      {
+          "displayName": "TextureData Sample",
+          "description": "Texture , TextureData , Shader",
+          "path": "Samples/TextureDataSample"
+      }
+  ]
+}

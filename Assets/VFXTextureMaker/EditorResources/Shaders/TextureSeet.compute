@@ -1,0 +1,28 @@
+#pragma kernel CsMain
+#pragma kernel Clear
+
+RWTexture2D<float4> _Result;
+float2 _Resolution;
+Texture2D<float4> _DrawTex;
+float2 _SeetCount;
+float2 _DrawSize;
+int _Index;
+
+[numthreads(32, 32, 1)]
+void Clear(uint3 id : SV_DispatchThreadID)
+{
+    int2 ids = int2(asint(id.x), asint(id.y));
+    if (ids.x >= int(_Resolution.x) || ids.y >= int(_Resolution.y)) return;
+    _Result[ids.xy] = float4(0, 0, 0, 0);
+}
+
+[numthreads(32, 32, 1)]
+void CsMain(uint3 id : SV_DispatchThreadID)
+{
+    int2 ids = int2(asint(id.x), asint(id.y));
+    if (ids.x >= int(_Resolution.x) || ids.y >= int(_Resolution.y)) return;
+    int2 idsOffset = ids;
+    idsOffset.x += int(_DrawSize.x * ((_Index - 1) % _SeetCount.x));
+    idsOffset.y += int(_DrawSize.y * int(_SeetCount.y - ceil(_Index / _SeetCount.x)));
+    _Result[idsOffset.xy] = _DrawTex[ids];
+}

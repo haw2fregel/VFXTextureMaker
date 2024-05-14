@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 77fd6b9a074142e4ba68501058a1fe42
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - m_ViewDataDictionary: {instanceID: 0}
+  - _cs: {fileID: 7200000, guid: 46f549f19afad104fa1aa637c6bab735, type: 3}
+  - _textureSeetCs: {fileID: 7200000, guid: 70430aa5c9ff1ea469465a4e87f43bbd, type: 3}
+  - _copyRtCs: {fileID: 7200000, guid: 63d21ec4955123f409c447bc997d3b7c, type: 3}
+  - _previewMaterial: {fileID: 2100000, guid: d73285fe83c549b4cbe7f70a30e8f714, type: 2}
+  - _previewBg: {fileID: 2800000, guid: 201e7baccc7eabd48981c58bb5656570, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
