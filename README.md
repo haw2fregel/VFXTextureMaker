@@ -21,7 +21,7 @@ Tools/VFXTextureMaker」からウィンドウを開きます。\
 
 ### レイヤーリスト
 レイヤーの追加削除や順番の変更をします。\
-![image](https://github.com/haw2fregel/VFXTextureMaker/assets/143925343/9f4f86b3-9177-49af-b093-ad3f08d7ec7b)
+![329612398-abbb6d36-e8bc-4520-aad4-f509c4dcdfb6](https://github.com/haw2fregel/VFXTextureMaker/assets/143925343/9411264a-06ff-43ce-9f9c-29d96b1b8826)
 
 
 ![image](https://github.com/haw2fregel/VFXTextureMaker/assets/143925343/13769ac5-ee39-423d-a9bd-b93afdd7185f)
@@ -39,13 +39,15 @@ Tools/VFXTextureMaker」からウィンドウを開きます。\
 
 ### レイヤー詳細
 選択中レイヤーのパラメータを編集します。\
-![image](https://github.com/haw2fregel/VFXTextureMaker/assets/143925343/83e9956b-68ec-43b2-a8cc-fab62648fd2b)
+![329751774-25f9e78d-8a54-4acf-9c3e-98a65b6a36ac](https://github.com/haw2fregel/VFXTextureMaker/assets/143925343/fcc841ae-96d0-4c9c-92a8-6e118ebb530c)
+
 
 
 
 ### アニメーション
 レイヤーのパラメータをアニメーションさせ、連番テクスチャを描き出します。\
-![image](https://github.com/haw2fregel/VFXTextureMaker/assets/143925343/f6c1bef6-a415-4635-aa5a-7fd1552a8688)
+![329859508-1a7de1b8-6aeb-4ab0-a47f-1078b59f9a3a](https://github.com/haw2fregel/VFXTextureMaker/assets/143925343/d6d48839-bdbb-45df-8fc3-06cee22ada4c)
+
 
 
 
@@ -62,7 +64,8 @@ Tools/VFXTextureMaker」からウィンドウを開きます。\
 カーブ編集ONOFF
 
 ### プレビュー
-![image](https://github.com/haw2fregel/VFXTextureMaker/assets/143925343/be2c3ccd-ddea-4a1f-8b55-1a7cee6c274c)
+![330058607-a6897234-6d9a-42f8-80d5-39ab03d5ee8b](https://github.com/haw2fregel/VFXTextureMaker/assets/143925343/c401c95e-15a3-4b3b-b92d-38a2b2652ec3)
+
 
 
 ### [レイヤー一覧](https://github.com/haw2fregel/VFXTextureMaker/blob/v1.0.0/DOCUMENTATION.md)
