@@ -17,7 +17,7 @@
       {
           "displayName": "TextureData Sample",
           "description": "Texture , TextureData , Shader",
-          "path": "Samples/TextureDataSample"
+          "path": "Samples~/TextureDataSample"
       }
   ]
 }
