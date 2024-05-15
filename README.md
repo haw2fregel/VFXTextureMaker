@@ -77,3 +77,4 @@ https://github.com/haw2fregel/VFXTextureMaker/releases/tag/v1.0.0_release
 ## サンプルデータ
 ![image](https://github.com/haw2fregel/VFXTextureMaker/assets/143925343/d2e2c15b-8d69-4408-a90b-40ff991821e7)\
 冒頭のテクスチャが入っています。
+そのままの利用・編集などご自由にお使いください。
