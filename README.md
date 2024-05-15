@@ -11,12 +11,12 @@ UnityのPackageManagerを開き\
 
 ![image](https://github.com/haw2fregel/VFXTextureMaker/assets/143925343/ed638b1e-a0cb-4807-8685-5d9e778cbb19)
 
-.unitypackageでのインストールはこちらから。\
+.unitypackageでインストールする場合は、こちらからZIPをダウンロードしてください。\
 https://github.com/haw2fregel/VFXTextureMaker/releases/tag/v1.0.0_release
 
  ---
 
-Tools/VFXTextureMaker」からウィンドウを開きます。\
+「Tools/VFXTextureMaker」からウィンドウを開きます。\
 ![image](https://github.com/haw2fregel/VFXTextureMaker/assets/143925343/f9099ba2-a2be-450c-9a38-599e84442538)
 
 
@@ -39,7 +39,6 @@ Tools/VFXTextureMaker」からウィンドウを開きます。\
 ![image](https://github.com/haw2fregel/VFXTextureMaker/assets/143925343/5cff0e27-13b7-461f-872f-20c210e771ff)
 マスクONOFF\
 ![image](https://github.com/haw2fregel/VFXTextureMaker/assets/143925343/06d9d2b2-904e-4415-9449-43752ede9d36)
-
 マスクに使うレイヤー番号
 
 ### レイヤー詳細
