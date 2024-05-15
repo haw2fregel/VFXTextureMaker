@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7a5c3cb454df0540a33c2f2023be86c, type: 3}
+  m_Name: gradation_02
+  m_EditorClassIdentifier: 
+  _targetTexture: {fileID: 0}
+  _layerList: []
+  _animated: 0
+  _animLength: 1
+  _currentFrame: 0
+  _textureSize: {x: 256, y: 256}
