@@ -1,5 +1,6 @@
 # VFXTextureMaker
 
+![コンポ 1](https://github.com/haw2fregel/VFXTextureMaker/assets/143925343/bc1aacfb-1ddd-484a-9804-4d92b473c7de)
 
 ## 使用方法
 
@@ -75,5 +76,5 @@ Tools/VFXTextureMaker」からウィンドウを開きます。\
 ### [レイヤー一覧](https://github.com/haw2fregel/VFXTextureMaker/blob/v1.0.0/DOCUMENTATION.md)
 
 ## サンプルデータ
-![image](https://github.com/haw2fregel/VFXTextureMaker/assets/143925343/d2e2c15b-8d69-4408-a90b-40ff991821e7)
-
+![image](https://github.com/haw2fregel/VFXTextureMaker/assets/143925343/d2e2c15b-8d69-4408-a90b-40ff991821e7)\
+冒頭のテクスチャが入っています。
