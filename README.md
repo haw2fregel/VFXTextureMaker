@@ -10,6 +10,10 @@ UnityのPackageManagerを開き\
 
 ![image](https://github.com/haw2fregel/VFXTextureMaker/assets/143925343/ed638b1e-a0cb-4807-8685-5d9e778cbb19)
 
+.unitypackageでのインストールはこちらから。\
+https://github.com/haw2fregel/VFXTextureMaker/releases/tag/v1.0.0_release
+
+ ---
 
 Tools/VFXTextureMaker」からウィンドウを開きます。\
 ![image](https://github.com/haw2fregel/VFXTextureMaker/assets/143925343/f9099ba2-a2be-450c-9a38-599e84442538)
