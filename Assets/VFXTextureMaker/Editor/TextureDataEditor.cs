@@ -151,7 +151,9 @@ namespace VFXTextureMaker
 
         public void OnDisable()
         {
-            if (_textureData != null) _textureData.OnDisable(); 
+            if (_textureData == null) return;
+            _textureData.OnDisable();
+            _textureData = null;
         }
 
         public void InitLayerList()
