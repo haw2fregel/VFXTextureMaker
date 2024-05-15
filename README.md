@@ -70,6 +70,10 @@ https://github.com/haw2fregel/VFXTextureMaker/releases/tag/v1.0.0_release
 ### プレビュー
 ![330058607-a6897234-6d9a-42f8-80d5-39ab03d5ee8b](https://github.com/haw2fregel/VFXTextureMaker/assets/143925343/c401c95e-15a3-4b3b-b92d-38a2b2652ec3)
 
+### 描き出し
+
+![image](https://github.com/haw2fregel/VFXTextureMaker/assets/143925343/1b9a1a7f-fe59-4b25-a41c-1b1d9fffc7da)\
+Renderボタンを押すと、テクスチャに反映されます。
 
 
 ### [レイヤー一覧](https://github.com/haw2fregel/VFXTextureMaker/blob/v1.0.0/DOCUMENTATION.md)
