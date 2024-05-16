@@ -51,6 +51,9 @@ https://github.com/haw2fregel/VFXTextureMaker/releases/tag/v1.0.0_release
 ### アニメーション
 レイヤーのパラメータをアニメーションさせ、連番テクスチャを描き出します。\
 ![329859508-1a7de1b8-6aeb-4ab0-a47f-1078b59f9a3a](https://github.com/haw2fregel/VFXTextureMaker/assets/143925343/d6d48839-bdbb-45df-8fc3-06cee22ada4c)
+![image](https://github.com/haw2fregel/VFXTextureMaker/assets/143925343/8a2bbbba-ea03-49cc-959a-439505269949)
+
+
 
 
 
