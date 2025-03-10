@@ -122,11 +122,14 @@ namespace VFXTextureMaker
         {
             _resultRT = new RenderTexture(_textureSize.x, _textureSize.y, 0, RenderTextureFormat.ARGBFloat);
             _resultRT.enableRandomWrite = true;
+            _resultRT.filterMode = FilterMode.Point;
             _resultRT.Create();
             _seetRT = new RenderTexture(_textureSize.x, _textureSize.y, 0, RenderTextureFormat.ARGBFloat);
             _seetRT.enableRandomWrite = true;
+            _seetRT.filterMode = FilterMode.Point;
             _seetRT.Create();
             _bufferRT = new RenderTexture(_textureSize.x, _textureSize.y, 0, RenderTextureFormat.ARGBFloat);
+            _bufferRT.filterMode = FilterMode.Point;
 
             foreach (var layer in LayerList)
             {
@@ -162,12 +165,14 @@ namespace VFXTextureMaker
                 _resultRT.Release();
                 _resultRT = new RenderTexture(_textureSize.x, _textureSize.y, 0, RenderTextureFormat.ARGBFloat);
                 _resultRT.enableRandomWrite = true;
+                _resultRT.filterMode = FilterMode.Point;
             }
 
             if (_bufferRT.width != _textureSize.x || _bufferRT.height != _textureSize.y)
             {
                 _bufferRT.Release();
                 _bufferRT = new RenderTexture(_textureSize.x, _textureSize.y, 0, RenderTextureFormat.ARGBFloat);
+                _bufferRT.filterMode = FilterMode.Point;
             }
 
             cs_instance.SetVector(ResolutionID, new Vector4(_textureSize.x, _textureSize.y, 0, 0));
@@ -239,6 +244,7 @@ namespace VFXTextureMaker
                 DestroyImmediate(_previewTexture);
                 _previewTexture = new Texture2D(_textureSize.x, _textureSize.y, TextureFormat.RGBAFloat, false);
             }
+            _previewTexture.filterMode = FilterMode.Point;
             RenderTexture.active = _bufferRT;
             _previewTexture.ReadPixels(new Rect(0, 0, _textureSize.x, _textureSize.y), 0, 0);
             _previewTexture.Apply();
@@ -259,12 +265,14 @@ namespace VFXTextureMaker
                 _resultRT.Release();
                 _resultRT = new RenderTexture(_textureSize.x, _textureSize.y, 0, RenderTextureFormat.ARGBFloat);
                 _resultRT.enableRandomWrite = true;
+                _resultRT.filterMode = FilterMode.Point;
             }
 
             if (_bufferRT.width != _textureSize.x || _bufferRT.height != _textureSize.y)
             {
                 _bufferRT.Release();
                 _bufferRT = new RenderTexture(_textureSize.x, _textureSize.y, 0, RenderTextureFormat.ARGBFloat);
+                _bufferRT.filterMode = FilterMode.Point;
             }
 
             cs_instance.SetVector(ResolutionID, new Vector4(_textureSize.x, _textureSize.y, 0, 0));
@@ -278,6 +286,7 @@ namespace VFXTextureMaker
                 _seetRT.Release();
                 _seetRT = new RenderTexture(seetSize.x, seetSize.y, 0, RenderTextureFormat.ARGBFloat);
                 _seetRT.enableRandomWrite = true;
+                _seetRT.filterMode = FilterMode.Point;
             }
 
             var seetcs_instance = Instantiate(seetCs);
@@ -358,6 +367,7 @@ namespace VFXTextureMaker
             {
                 _previewTexture = new Texture2D(seetSize.x, seetSize.y, TextureFormat.RGBAFloat, false);
             }
+            _previewTexture.filterMode = FilterMode.Point;
             _previewTexture.ReadPixels(new Rect(0, 0, seetSize.x, seetSize.y), 0, 0);
             _previewTexture.Apply();
             RenderTexture.active = null;
