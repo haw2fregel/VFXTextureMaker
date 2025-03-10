@@ -108,6 +108,40 @@ namespace VFXTextureMaker
                 _textureDataEditor.InitLayerList(AssetDatabase.LoadAssetAtPath(path, typeof(TextureData)) as TextureData);
                 _textureDataEditor.Blit(_cs);
             });
+            if (TextureDataEditor.TextureData != null)
+            {
+                menu.AddItem(new GUIContent("Copy"), on: false, func: () =>
+                {
+                    var path = EditorUtility.SaveFilePanelInProject("Save TextureData", "TextureData", "asset", "", "Assets");
+                    if (string.IsNullOrWhiteSpace(path)) return;
+
+                    var pathTex = EditorUtility.SaveFilePanelInProject("Save Texture", "Texture", "png", "", "Assets");
+                    if (string.IsNullOrWhiteSpace(pathTex)) return;
+
+                    var newData = Instantiate(TextureDataEditor.TextureData);
+
+                    var tex = new Texture2D(_textureDataEditor.TargetTexture.width, _textureDataEditor.TargetTexture.height);
+                    var renderTexture = new RenderTexture(tex.width, tex.height, 32);
+                    var currentRenderTex = RenderTexture.active;
+                    Graphics.Blit(_textureDataEditor.TargetTexture, renderTexture);
+                    RenderTexture.active = renderTexture;
+                    tex.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
+                    RenderTexture.active = currentRenderTex;
+                    byte[] pngData = tex.EncodeToPNG();
+                    File.WriteAllBytes(pathTex, pngData);
+                    DestroyImmediate(tex);
+                    DestroyImmediate(renderTexture);
+
+                    AssetDatabase.CreateAsset(newData, path);
+                    AssetDatabase.Refresh();
+
+                    newData = null;
+
+                    _textureDataEditor.InitLayerList(AssetDatabase.LoadAssetAtPath(path, typeof(TextureData)) as TextureData);
+                    _textureDataEditor.TargetTexture = AssetDatabase.LoadAssetAtPath(pathTex, typeof(Texture2D)) as Texture2D;
+                    _textureDataEditor.Blit(_cs);
+                });
+            }
             menu.DropDown(buttonRect);
         }
         public void OnGUI()
