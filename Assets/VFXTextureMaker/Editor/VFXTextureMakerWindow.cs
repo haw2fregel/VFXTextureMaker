@@ -112,6 +112,32 @@ namespace VFXTextureMaker
         {
             var ev = Event.current;
 
+            //ドラッグ＆ドロップでファイル変更を受付
+            var area = GUILayoutUtility.GetRect(0.0f, 0.0f, GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true));
+            GUI.Box(area, "");
+            switch (ev.type)
+            {
+                case EventType.DragUpdated:
+                    DragAndDrop.visualMode = DragAndDropVisualMode.Copy;
+                    Event.current.Use();
+                    break;
+                case EventType.DragPerform:
+                    if (!area.Contains(ev.mousePosition)) break;
+
+                    DragAndDrop.AcceptDrag();
+                    if (0 >= DragAndDrop.objectReferences.Length) break;
+
+                    for (var i = 0; i < DragAndDrop.paths.Length; ++i)
+                    {
+                        if (DragAndDrop.objectReferences[i] is not TextureData) continue;
+                        _textureDataEditor.InitLayerList(AssetDatabase.LoadAssetAtPath(DragAndDrop.paths[i], typeof(TextureData)) as TextureData);
+                        _textureDataEditor.Blit(_cs);
+                    }
+                    DragAndDrop.activeControlID = 0;
+                    ev.Use();
+                    break;
+            }
+
             var rect = position;
             _borderHeight = Mathf.Clamp(_borderHeight, 150, position.height - 50);
             _borderWidth = Mathf.Clamp(_borderWidth, 150, position.width - 150);
@@ -174,26 +200,34 @@ namespace VFXTextureMaker
 
             if (_textureDataOption)
             {
+                rect.y += 20;
+                var rectSo = rect;
+                rectSo.height = 20;
+                rectSo.xMax = 200;
                 using (var check = new EditorGUI.ChangeCheckScope())
                 {
-                    rect.y += 20;
-                    var rectSo = rect;
-                    rectSo.height = 20;
-                    rectSo.xMax = 200;
-                    EditorGUI.ObjectField(rectSo, TextureDataEditor.TextureData, typeof(ScriptableObject), false);
-                    rectSo.height = 50;
-                    rectSo.xMax = position.width;
-                    rectSo.xMin = position.width - 50;
-                    EditorGUI.ObjectField(rectSo, _textureDataEditor.TargetTexture, typeof(Texture2D), false);
-                    rect.y += 50;
+                    var selectTextureData = EditorGUI.ObjectField(rectSo, TextureDataEditor.TextureData, typeof(TextureData), false) as TextureData;
+                    if (check.changed)
+                    {
+                        _textureDataEditor.InitLayerList(selectTextureData);
+                        _textureDataEditor.Blit(_cs);
+                    }
+                }
+                rectSo.height = 50;
+                rectSo.xMax = position.width;
+                rectSo.xMin = position.width - 50;
+                EditorGUI.ObjectField(rectSo, _textureDataEditor.TargetTexture, typeof(Texture2D), false);
+                rect.y += 50;
+                using (var check = new EditorGUI.ChangeCheckScope())
+                {
                     _textureDataEditor.TextureSize = EditorGUI.Vector2IntField(rect, new GUIContent("Resolution"), _textureDataEditor.TextureSize);
-                    rect.y += 25;
                     if (check.changed)
                     {
                         Changed();
                         return;
                     }
                 }
+                rect.y += 25;
             }
             if (_animationOption)
             {
