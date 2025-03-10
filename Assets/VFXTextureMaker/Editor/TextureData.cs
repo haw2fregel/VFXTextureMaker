@@ -377,5 +377,38 @@ namespace VFXTextureMaker
             DestroyImmediate(cs_instance);
             DestroyImmediate(seetcs_instance);
         }
+        
+        [ContextMenu("Copy")]
+        public void SelfCopy()
+        {
+            var path = EditorUtility.SaveFilePanelInProject("Save TextureData", "TextureData", "asset", "", "Assets");
+            if (string.IsNullOrWhiteSpace(path)) return;
+
+            var pathTex = EditorUtility.SaveFilePanelInProject("Save Texture", "Texture", "png", "", "Assets");
+            if (string.IsNullOrWhiteSpace(pathTex)) return;
+
+            var tex = new Texture2D(TargetTexture.width, TargetTexture.height);
+            var renderTexture = new RenderTexture(tex.width, tex.height, 32);
+            
+            var currentRenderTex = RenderTexture.active;
+            Graphics.Blit(TargetTexture, renderTexture);
+            RenderTexture.active = renderTexture;
+            tex.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
+            RenderTexture.active = currentRenderTex;
+            byte[] pngData = tex.EncodeToPNG();
+            File.WriteAllBytes(pathTex, pngData);
+
+            DestroyImmediate(tex);
+            DestroyImmediate(renderTexture);
+
+            AssetDatabase.Refresh();
+            var newData = Instantiate(this);
+            newData.TargetTexture = AssetDatabase.LoadAssetAtPath(pathTex, typeof(Texture2D)) as Texture2D;
+
+            AssetDatabase.CreateAsset(newData, path);
+            newData = null;
+            
+            AssetDatabase.Refresh();
+        }
     }
 }
