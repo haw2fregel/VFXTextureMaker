@@ -45,20 +45,19 @@ namespace VFXTextureMaker
             _textureDataEditor = CreateInstance<TextureDataEditor>();
             _textureDataEditor.OnChanged += Changed;
 
-            Undo.undoRedoPerformed += () =>
-            {
-                if(_textureDataEditor != null)
-                {
-                    _textureDataEditor.InitLayerList();
-                    _textureDataEditor.Blit(_cs);
-                }
-                Repaint();
-            };
+            Undo.undoRedoPerformed += OnUndoRedo;
         }
         public void OnDisable()
         {
             _textureDataEditor.OnDisable();
             DestroyImmediate(_textureDataEditor);
+            Undo.undoRedoPerformed -= OnUndoRedo;
+        }
+        void OnUndoRedo()
+        {
+            _textureDataEditor.InitLayerList();
+            _textureDataEditor.Blit(_cs);
+            Repaint();
         }
 
         void OnFocus()
