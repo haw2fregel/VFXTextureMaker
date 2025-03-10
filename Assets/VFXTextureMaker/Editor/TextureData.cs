@@ -145,7 +145,7 @@ namespace VFXTextureMaker
         RenderTexture _resultRT;
         RenderTexture _bufferRT;
         RenderTexture _seetRT;
-        const int ThreadCount = 32;
+        const int ThreadCount = 1;
         readonly int ResolutionID = Shader.PropertyToID("_Resolution");
         readonly int ResultID = Shader.PropertyToID("_Result");
         readonly int BufferID = Shader.PropertyToID("_Buffer");
