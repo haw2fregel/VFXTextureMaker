@@ -47,8 +47,11 @@ namespace VFXTextureMaker
 
             Undo.undoRedoPerformed += () =>
             {
-                _textureDataEditor.InitLayerList();
-                _textureDataEditor.Blit(_cs);
+                if(_textureDataEditor != null)
+                {
+                    _textureDataEditor.InitLayerList();
+                    _textureDataEditor.Blit(_cs);
+                }
                 Repaint();
             };
         }
