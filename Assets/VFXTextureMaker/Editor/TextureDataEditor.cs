@@ -138,8 +138,8 @@ namespace VFXTextureMaker
             {
                 var textureSize = _so.FindProperty("_textureSize");
                 var setValue = value;
-                setValue.x = setValue.x <= 1 ? 2 : setValue.x;
-                setValue.y = setValue.y <= 1 ? 2 : setValue.y;
+                setValue.x = setValue.x <= 0 ? 1 : setValue.x;
+                setValue.y = setValue.y <= 0 ? 1 : setValue.y;
                 setValue.x = setValue.x >= 4098 ? 4098 : setValue.x;
                 setValue.y = setValue.y >= 4098 ? 4098 : setValue.y;
                 textureSize.vector2IntValue = setValue;
