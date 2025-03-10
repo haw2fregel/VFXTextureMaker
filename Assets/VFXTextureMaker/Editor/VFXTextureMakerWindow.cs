@@ -245,6 +245,11 @@ namespace VFXTextureMaker
                     var selectTextureData = EditorGUI.ObjectField(rectSo, TextureDataEditor.TextureData, typeof(TextureData), false) as TextureData;
                     if (check.changed)
                     {
+                        if(selectTextureData == null)
+                        {
+                            _textureDataEditor.OnDisable();
+                            return;
+                        }
                         _textureDataEditor.InitLayerList(selectTextureData);
                         _textureDataEditor.Blit(_cs);
                     }
