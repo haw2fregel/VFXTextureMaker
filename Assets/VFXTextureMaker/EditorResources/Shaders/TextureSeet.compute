@@ -8,7 +8,7 @@ float2 _SeetCount;
 float2 _DrawSize;
 int _Index;
 
-[numthreads(32, 32, 1)]
+[numthreads(1, 1, 1)]
 void Clear(uint3 id : SV_DispatchThreadID)
 {
     int2 ids = int2(asint(id.x), asint(id.y));
@@ -16,7 +16,7 @@ void Clear(uint3 id : SV_DispatchThreadID)
     _Result[ids.xy] = float4(0, 0, 0, 0);
 }
 
-[numthreads(32, 32, 1)]
+[numthreads(1, 1, 1)]
 void CsMain(uint3 id : SV_DispatchThreadID)
 {
     int2 ids = int2(asint(id.x), asint(id.y));
