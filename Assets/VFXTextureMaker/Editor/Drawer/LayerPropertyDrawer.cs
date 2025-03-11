@@ -122,6 +122,14 @@ namespace VFXTextureMaker
                     rect.y += OpColorBalanceDrawer.GetPropertyHeight(colorBalance);
                 }
 
+                var tileAndOffset = property.FindPropertyRelative("_tileAndOffset");
+                var tileAndOffsetActive = tileAndOffset.FindPropertyRelative("active");
+                if (tileAndOffsetActive.boolValue)
+                {
+                    OpTileAndOffsetDrawer.DrawProperty(rect, tileAndOffset, label);
+                    rect.y += OpTileAndOffsetDrawer.GetPropertyHeight(tileAndOffset);
+                }
+
                 var customShader = property.FindPropertyRelative("_customShader");
                 var customShaderActive = customShader.FindPropertyRelative("active");
                 if (customShaderActive.boolValue)
@@ -239,6 +247,14 @@ namespace VFXTextureMaker
                     rect.y += OpColorBalanceDrawer.GetPropertyHeight(colorBalance);
                 }
 
+                var tileAndOffset = property.FindPropertyRelative("_tileAndOffset");
+                var tileAndOffsetActive = tileAndOffset.FindPropertyRelative("active");
+                if (tileAndOffsetActive.boolValue)
+                {
+                    OpTileAndOffsetDrawer.DrawPropertyAnim(rect, tileAndOffset, currentFrame.intValue, label);
+                    rect.y += OpTileAndOffsetDrawer.GetPropertyHeight(tileAndOffset);
+                }
+
                 var customShader = property.FindPropertyRelative("_customShader");
                 var customShaderActive = customShader.FindPropertyRelative("active");
                 if (customShaderActive.boolValue)
@@ -329,6 +345,13 @@ namespace VFXTextureMaker
             if (colorBalanceActive.boolValue)
             {
                 height += OpColorBalanceDrawer.GetPropertyHeight(colorBalance);
+            }
+
+            var tileAndOffset = property.FindPropertyRelative("_tileAndOffset");
+            var tileAndOffsetActive = tileAndOffset.FindPropertyRelative("active");
+            if (tileAndOffsetActive.boolValue)
+            {
+                height += OpTileAndOffsetDrawer.GetPropertyHeight(tileAndOffset);
             }
 
             var customShader = property.FindPropertyRelative("_customShader");

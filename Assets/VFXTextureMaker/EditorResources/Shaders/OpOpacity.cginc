@@ -70,12 +70,12 @@ float4 Blend(float4 baseColor, float4 drawColor, float4 maskColor = float4(1, 1,
 }
 
 
-float4 Blend(float4 baseColor, float4 drawColor, float blendMode)
+float4 BlendColor(float4 baseColor, float4 drawColor, int blendMode)
 {
     drawColor = saturate(drawColor);
 
     float4 col = drawColor;
-    float opacity = drawColor.w;
+    float opacity = drawColor.a;
 
     switch(blendMode)
     {

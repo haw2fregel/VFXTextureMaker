@@ -18,6 +18,7 @@ namespace VFXTextureMaker
         Filter_ColorBalance,
         CustomShader,
         Draw_Draw,
-        Displacement_Displacement
+        Displacement_Displacement,
+        Displacement_TileAndOffset
     }
 }
