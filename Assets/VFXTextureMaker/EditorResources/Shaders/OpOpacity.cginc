@@ -68,3 +68,51 @@ float4 Blend(float4 baseColor, float4 drawColor, float4 maskColor = float4(1, 1,
 
     return saturate(baseColor);
 }
+
+
+float4 Blend(float4 baseColor, float4 drawColor, float blendMode)
+{
+    drawColor = saturate(drawColor);
+
+    float4 col = drawColor;
+    float opacity = drawColor.w;
+
+    switch(blendMode)
+    {
+        case 0:
+            baseColor = lerp(baseColor, col, opacity);
+            break;
+        case 1:
+            baseColor += col * opacity;
+            break;
+        case 2:
+            baseColor -= col * opacity;
+            break;
+        case 3:
+            baseColor = lerp(baseColor, baseColor * col, opacity);
+            break;
+        case 4:
+            baseColor = lerp(baseColor, baseColor / col, opacity);
+            break;
+        case 5:
+            baseColor = max(baseColor, col * opacity);
+            break;
+        case 6:
+            baseColor = min(baseColor, col * opacity);
+            break;
+        case 7:
+            baseColor = lerp(baseColor, 1.0 - (1.0 - baseColor) * (1.0 - col), opacity);
+            break;
+        case 8:
+            float4 overlay1 = 1.0 - 2.0 * (1.0 - baseColor) * (1.0 - col);
+            float4 overlay2 = 2.0 * baseColor * col;
+            col = overlay2 * step(baseColor, float4(0.5, 0.5, 0.5, 0.5)) + (1 - step(baseColor, float4(0.5, 0.5, 0.5, 0.5))) * overlay1;
+            baseColor = lerp(baseColor, col, opacity);
+            break;
+        case 9:
+            baseColor = lerp(baseColor, abs(col - baseColor), opacity);
+            break;
+    }
+
+    return saturate(baseColor);
+}
