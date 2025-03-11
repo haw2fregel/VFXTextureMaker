@@ -11,6 +11,7 @@ namespace VFXTextureMaker
         [SerializeField] FloatAnimProperty _uvRotate;
         [SerializeField] Vector2AnimProperty _uvBend;
         [SerializeField] BoolAnimProperty _uvPolar;
+        [SerializeField] BoolAnimProperty _uvRepeat;
 
         public OpUVDeform()
         {
@@ -19,6 +20,7 @@ namespace VFXTextureMaker
             _uvRotate = new FloatAnimProperty("_UVRotate", 0);
             _uvBend = new Vector2AnimProperty("_UVBend", new Vector2(0, 0));
             _uvPolar = new BoolAnimProperty("_UVPolar", false);
+            _uvRepeat = new BoolAnimProperty("_UVRepeat", false);
         }
         public override void SetComputeShaderProperty(ComputeShader cs, int kernel)
         {
@@ -27,6 +29,7 @@ namespace VFXTextureMaker
             cs.SetFloat(_uvRotate.ID, _uvRotate.Value);
             cs.SetVector(_uvBend.ID, new Vector4(_uvBend.Value.x, _uvBend.Value.y, 0, 0));
             cs.SetInt(_uvPolar.ID, _uvPolar.Value ? 1 : 0);
+            cs.SetInt(_uvRepeat.ID, _uvRepeat.Value ? 1 : 0);
         }
         public override void SetComputeShaderPropertyAnim(ComputeShader cs, int kernel, int currentFrame)
         {
@@ -79,6 +82,15 @@ namespace VFXTextureMaker
             else
             {
                 cs.SetInt(_uvPolar.ID, _uvPolar.Value ? 1 : 0);
+            }
+
+            if (_uvRepeat.IsAnim)
+            {
+                cs.SetInt(_uvRepeat.ID, (int)_uvRepeat.Curve.Evaluate(currentFrame));
+            }
+            else
+            {
+                cs.SetInt(_uvRepeat.ID, _uvRepeat.Value ? 1 : 0);
             }
         }
     }
