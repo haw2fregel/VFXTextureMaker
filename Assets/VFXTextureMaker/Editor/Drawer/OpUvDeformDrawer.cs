@@ -34,6 +34,10 @@ namespace VFXTextureMaker
 
                 var uvPolar = property.FindPropertyRelative("_uvPolar");
                 CustomGUIUtility.PropertyValueField(rect, uvPolar, new GUIContent("Polar"));
+                rect.y += CustomGUIUtility.PropertyHeight;
+
+                var uvRepeat = property.FindPropertyRelative("_uvRepeat");
+                CustomGUIUtility.PropertyValueField(rect, uvRepeat, new GUIContent("Repeat"));
 
                 rect.xMin -= 10;
             }
@@ -69,6 +73,10 @@ namespace VFXTextureMaker
 
                 var uvPolar = property.FindPropertyRelative("_uvPolar");
                 CustomGUIUtility.BoolAnimField(rect, uvPolar, currentFrame, new GUIContent("Polar"));
+                rect.y += CustomGUIUtility.PropertyHeight;
+
+                var uvRepeat = property.FindPropertyRelative("_uvRepeat");
+                CustomGUIUtility.BoolAnimField(rect, uvRepeat, currentFrame, new GUIContent("Repeat"));
 
                 rect.xMin -= 10;
             }
@@ -82,7 +90,7 @@ namespace VFXTextureMaker
             var showOption = property.FindPropertyRelative("showOption");
             if (showOption.boolValue)
             {
-                height += CustomGUIUtility.PropertyHeight * 5;
+                height += CustomGUIUtility.PropertyHeight * 6;
             }
             height += CustomGUIUtility.LayerSpaceHeight;
 

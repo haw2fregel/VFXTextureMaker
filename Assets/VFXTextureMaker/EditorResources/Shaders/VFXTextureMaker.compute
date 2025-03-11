@@ -84,7 +84,7 @@ void Displacement_Displacement(uint3 id : SV_DispatchThreadID)
 {
     int2 ids = int2(asint(id.x), asint(id.y));
     if (ids.x >= int(_Resolution.x) || ids.y >= int(_Resolution.y)) return;
-    float4 col = _Buffer[UVToID(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids))))))];
+    float4 col = _Buffer[UVToID(UVRepeat(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids)))))))];
     
     _Result[ids] = col;
 }
@@ -95,7 +95,7 @@ void Draw_Texture(uint3 id : SV_DispatchThreadID)
     int2 ids = int2(asint(id.x), asint(id.y));
     if (ids.x >= int(_Resolution.x) || ids.y >= int(_Resolution.y)) return;
     float4 col = _Buffer[ids];
-    float4 drawCol = TextureSampler(UVToID(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids))))))) * _DrawColor;
+    float4 drawCol = TextureSampler(UVToID(UVRepeat(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids)))))))) * _DrawColor;
     if (_Maskable)
     {
         col = Blend(col, drawCol, _MaskTex[ids]);
@@ -113,7 +113,7 @@ void Displacement_Texture(uint3 id : SV_DispatchThreadID)
 {
     int2 ids = int2(asint(id.x), asint(id.y));
     if (ids.x >= int(_Resolution.x) || ids.y >= int(_Resolution.y)) return;
-    float2 displacement = NormalTextureSampler(UVToID(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids))))))).xy;
+    float2 displacement = NormalTextureSampler(UVToID(UVRepeat(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids)))))))).xy;
     float4 col = Displacement(IdToUV(ids), displacement);
     
     _Result[ids] = col;
@@ -124,7 +124,7 @@ void Displacement_NormalMap(uint3 id : SV_DispatchThreadID)
 {
     int2 ids = int2(asint(id.x), asint(id.y));
     if (ids.x >= int(_Resolution.x) || ids.y >= int(_Resolution.y)) return;
-    float2 displacement = TextureSampler(UVToID(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids))))))).xy - float2(0.5, 0.5);
+    float2 displacement = TextureSampler(UVToID(UVRepeat(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids)))))))).xy - float2(0.5, 0.5);
     float4 col = Displacement(IdToUV(ids), displacement);
     
     _Result[ids] = col;
@@ -137,7 +137,7 @@ void Draw_Noise_ValueNoise(uint3 id : SV_DispatchThreadID)
     int2 ids = int2(asint(id.x), asint(id.y));
     if (ids.x >= int(_Resolution.x) || ids.y >= int(_Resolution.y)) return;
     float4 col = _Buffer[ids];
-    float4 drawCol = ValueNoise(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids)))))).xxxx * _DrawColor;
+    float4 drawCol = ValueNoise(UVRepeat(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids))))))).xxxx * _DrawColor;
     drawCol = saturate(float4(drawCol));
     if (_Maskable)
     {
@@ -157,7 +157,7 @@ void Draw_Noise_ValueNoiseGrad(uint3 id : SV_DispatchThreadID)
     int2 ids = int2(asint(id.x), asint(id.y));
     if (ids.x >= int(_Resolution.x) || ids.y >= int(_Resolution.y)) return;
     float4 col = _Buffer[ids];
-    float4 drawCol = ValueNoiseGrad(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids)))))).xxxx * _DrawColor;
+    float4 drawCol = ValueNoiseGrad(UVRepeat(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids))))))).xxxx * _DrawColor;
     if (_Maskable)
     {
         col = Blend(col, drawCol, _MaskTex[ids]);
@@ -176,7 +176,7 @@ void Draw_Noise_PerlinNoise(uint3 id : SV_DispatchThreadID)
     int2 ids = int2(asint(id.x), asint(id.y));
     if (ids.x >= int(_Resolution.x) || ids.y >= int(_Resolution.y)) return;
     float4 col = _Buffer[ids];
-    float4 drawCol = PerlinNoise(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids)))))).xxxx * _DrawColor;
+    float4 drawCol = PerlinNoise(UVRepeat(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids))))))).xxxx * _DrawColor;
     if (_Maskable)
     {
         col = Blend(col, drawCol, _MaskTex[ids]);
@@ -195,7 +195,7 @@ void Draw_Noise_PerlinNoiseGrad(uint3 id : SV_DispatchThreadID)
     int2 ids = int2(asint(id.x), asint(id.y));
     if (ids.x >= int(_Resolution.x) || ids.y >= int(_Resolution.y)) return;
     float4 col = _Buffer[ids];
-    float4 drawCol = PerlinNoiseGrad(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids)))))).xxxx * _DrawColor;
+    float4 drawCol = PerlinNoiseGrad(UVRepeat(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids))))))).xxxx * _DrawColor;
     if (_Maskable)
     {
         col = Blend(col, drawCol, _MaskTex[ids]);
@@ -214,7 +214,7 @@ void Draw_Noise_DistanceNoise(uint3 id : SV_DispatchThreadID)
     int2 ids = int2(asint(id.x), asint(id.y));
     if (ids.x >= int(_Resolution.x) || ids.y >= int(_Resolution.y)) return;
     float4 col = _Buffer[ids];
-    float4 drawCol = DistanceNoise(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids)))))).xxxx * _DrawColor;
+    float4 drawCol = DistanceNoise(UVRepeat(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids))))))).xxxx * _DrawColor;
     if (_Maskable)
     {
         col = Blend(col, drawCol, _MaskTex[ids]);
@@ -233,7 +233,7 @@ void Draw_Noise_Voronoi(uint3 id : SV_DispatchThreadID)
     int2 ids = int2(asint(id.x), asint(id.y));
     if (ids.x >= int(_Resolution.x) || ids.y >= int(_Resolution.y)) return;
     float4 col = _Buffer[ids];
-    float4 drawCol = Voronoi(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids)))))).xxxx * _DrawColor;
+    float4 drawCol = Voronoi(UVRepeat(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids))))))).xxxx * _DrawColor;
     if (_Maskable)
     {
         col = Blend(col, drawCol, _MaskTex[ids]);
@@ -252,7 +252,7 @@ void Draw_Noise_VoronoiEdge(uint3 id : SV_DispatchThreadID)
     int2 ids = int2(asint(id.x), asint(id.y));
     if (ids.x >= int(_Resolution.x) || ids.y >= int(_Resolution.y)) return;
     float4 col = _Buffer[ids];
-    float4 drawCol = VoronoiEdge(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids)))))).xxxx * _DrawColor;
+    float4 drawCol = VoronoiEdge(UVRepeat(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids))))))).xxxx * _DrawColor;
     if (_Maskable)
     {
         col = Blend(col, drawCol, _MaskTex[ids]);
@@ -270,7 +270,7 @@ void Displacement_Noise_ValueNoise(uint3 id : SV_DispatchThreadID)
 {
     int2 ids = int2(asint(id.x), asint(id.y));
     if (ids.x >= int(_Resolution.x) || ids.y >= int(_Resolution.y)) return;
-    float2 displacement = ValueNoiseDisplacement(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids))))));
+    float2 displacement = ValueNoiseDisplacement(UVRepeat(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids)))))));
     float4 col = Displacement(IdToUV(ids), displacement);
     
     _Result[ids] = col;
@@ -281,7 +281,7 @@ void Displacement_Noise_ValueNoiseGrad(uint3 id : SV_DispatchThreadID)
 {
     int2 ids = int2(asint(id.x), asint(id.y));
     if (ids.x >= int(_Resolution.x) || ids.y >= int(_Resolution.y)) return;
-    float2 displacement = ValueNoiseGradDistorion(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids))))));
+    float2 displacement = ValueNoiseGradDistorion(UVRepeat(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids)))))));
     float4 col = Displacement(IdToUV(ids), displacement);
     
     _Result[ids] = col;
@@ -292,7 +292,7 @@ void Displacement_Noise_PerlinNoise(uint3 id : SV_DispatchThreadID)
 {
     int2 ids = int2(asint(id.x), asint(id.y));
     if (ids.x >= int(_Resolution.x) || ids.y >= int(_Resolution.y)) return;
-    float2 displacement = PerlinNoiseDisplacement(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids))))));
+    float2 displacement = PerlinNoiseDisplacement(UVRepeat(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids)))))));
     float4 col = Displacement(IdToUV(ids), displacement);
     
     _Result[ids] = col;
@@ -303,7 +303,7 @@ void Displacement_Noise_PerlinNoiseGrad(uint3 id : SV_DispatchThreadID)
 {
     int2 ids = int2(asint(id.x), asint(id.y));
     if (ids.x >= int(_Resolution.x) || ids.y >= int(_Resolution.y)) return;
-    float2 displacement = PerlinNoiseGradDisplacement(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids))))));
+    float2 displacement = PerlinNoiseGradDisplacement(UVRepeat(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids)))))));
     float4 col = Displacement(IdToUV(ids), displacement);
     
     _Result[ids] = col;
@@ -314,7 +314,7 @@ void Displacement_Noise_DistanceNoise(uint3 id : SV_DispatchThreadID)
 {
     int2 ids = int2(asint(id.x), asint(id.y));
     if (ids.x >= int(_Resolution.x) || ids.y >= int(_Resolution.y)) return;
-    float2 displacement = DistanceNoiseDisplacement(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids))))));
+    float2 displacement = DistanceNoiseDisplacement(UVRepeat(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids)))))));
     float4 col = Displacement(IdToUV(ids), displacement);
     
     _Result[ids] = col;
@@ -325,7 +325,7 @@ void Displacement_Noise_Voronoi(uint3 id : SV_DispatchThreadID)
 {
     int2 ids = int2(asint(id.x), asint(id.y));
     if (ids.x >= int(_Resolution.x) || ids.y >= int(_Resolution.y)) return;
-    float2 displacement = VoronoiDisplacement(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids)))))).xy - float2(0.5, 0.5);
+    float2 displacement = VoronoiDisplacement(UVRepeat(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids))))))).xy - float2(0.5, 0.5);
     float4 col = Displacement(IdToUV(ids), displacement);
     
     _Result[ids] = col;
@@ -336,7 +336,7 @@ void Displacement_Noise_VoronoiEdge(uint3 id : SV_DispatchThreadID)
 {
     int2 ids = int2(asint(id.x), asint(id.y));
     if (ids.x >= int(_Resolution.x) || ids.y >= int(_Resolution.y)) return;
-    float2 displacement = VoronoiEdge(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids)))))).xx - float2(0.5, 0.5);;
+    float2 displacement = VoronoiEdge(UVRepeat(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids))))))).xx - float2(0.5, 0.5);;
     float4 col = Displacement(IdToUV(ids), displacement);
     
     _Result[ids] = col;
@@ -349,7 +349,7 @@ void Draw_Shape_DistancePower(uint2 id : SV_DispatchThreadID)
     int2 ids = int2(asint(id.x), asint(id.y));
     if (ids.x >= int(_Resolution.x) || ids.y >= int(_Resolution.y)) return;
     float4 col = _Buffer[ids];
-    float4 drawCol = ShapeDistancePower(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids)))))).xxxx * _DrawColor;
+    float4 drawCol = ShapeDistancePower(UVRepeat(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids))))))).xxxx * _DrawColor;
     if (_Maskable)
     {
         col = Blend(col, drawCol, _MaskTex[ids]);
@@ -369,7 +369,7 @@ void Draw_Shape_Polygon(uint2 id : SV_DispatchThreadID)
     int2 ids = int2(asint(id.x), asint(id.y));
     if (ids.x >= int(_Resolution.x) || ids.y >= int(_Resolution.y)) return;
     float4 col = _Buffer[ids];
-    float4 drawCol = ShapePolygon(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids)))))).xxxx * _DrawColor;
+    float4 drawCol = ShapePolygon(UVRepeat(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids))))))).xxxx * _DrawColor;
     if (_Maskable)
     {
         col = Blend(col, drawCol, _MaskTex[ids]);
@@ -432,7 +432,7 @@ void Filter_GradationSample(uint3 id : SV_DispatchThreadID)
     int2 ids = int2(asint(id.x), asint(id.y));
     if (ids.x >= int(_Resolution.x) || ids.y >= int(_Resolution.y)) return;
     float4 col = _Buffer[ids];
-    float4 drawCol = sampleGradation(col, UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids))))));
+    float4 drawCol = sampleGradation(col, UVRepeat(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids)))))));
     if (_Maskable)
     {
         col = Blend(col, drawCol, _MaskTex[ids]);

@@ -3,6 +3,7 @@ float2 _UVScale;
 float _UVRotate;
 float2 _UVBend;
 int _UVPolar;
+int _UVRepeat;
 
 float2 UVScale(float2 uv)
 {
@@ -68,4 +69,9 @@ float2 UVPolar(float2 uv)
     float radius = lengthN(delta, 2) * 2;
     float angle = atan2(delta.x, delta.y) * (1.0 / 6.28) + 0.5;
     return _UVPolar == 0 ? uv : float2(radius, angle);
+}
+
+float2 UVRepeat(float2 uv)
+{
+    return _UVRepeat ? frac(uv) : uv;
 }
