@@ -70,12 +70,12 @@ float4 Blend(float4 baseColor, float4 drawColor, float4 maskColor = float4(1, 1,
 }
 
 
-float4 BlendColor(float4 baseColor, float4 drawColor, int blendMode)
+float4 Blend(float4 baseColor, float4 drawColor, int blendMode, float opacity)
 {
     drawColor = saturate(drawColor);
 
     float4 col = drawColor;
-    float opacity = drawColor.a;
+    opacity *= drawColor.a;
 
     switch(blendMode)
     {
@@ -92,13 +92,13 @@ float4 BlendColor(float4 baseColor, float4 drawColor, int blendMode)
             baseColor = lerp(baseColor, baseColor * col, opacity);
             break;
         case 4:
-            baseColor = lerp(baseColor, baseColor / col, opacity);
+            baseColor = lerp(baseColor, col == 0 ? baseColor : baseColor / col, opacity);
             break;
         case 5:
-            baseColor = max(baseColor, col * opacity);
+            baseColor = lerp(baseColor, max(baseColor, col), opacity);
             break;
         case 6:
-            baseColor = min(baseColor, col * opacity);
+            baseColor = lerp(baseColor, min(baseColor, col), opacity);
             break;
         case 7:
             baseColor = lerp(baseColor, 1.0 - (1.0 - baseColor) * (1.0 - col), opacity);

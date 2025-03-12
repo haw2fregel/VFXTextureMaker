@@ -13,10 +13,15 @@ namespace VFXTextureMaker
         [SerializeField] Vector2AnimProperty _scaleMinMaxX;
         [SerializeField] Vector2AnimProperty _scaleMinMaxY;
         [SerializeField] Vector2AnimProperty _rotateMinMax;
+        [SerializeField] Vector2AnimProperty _opacityMinMax;
         [SerializeField] IntAnimProperty _randomSeed;
+        [SerializeField] BoolAnimProperty _isRepeat;
 
         [SerializeField] Blend _blend;
         readonly int BlendID = Shader.PropertyToID("_TileAndOffsetBlendMode");
+
+        [SerializeField] Color _backColor;
+        readonly int BackColorID = Shader.PropertyToID("_TileAndOffsetBackColor");
 
         public OpTileAndOffset()
         {
@@ -27,8 +32,11 @@ namespace VFXTextureMaker
             _scaleMinMaxX = new Vector2AnimProperty("_TileOffsetScaleMinMaxX", new Vector2(1, 1));
             _scaleMinMaxY = new Vector2AnimProperty("_TileOffsetScaleMinMaxY", new Vector2(1, 1));
             _rotateMinMax = new Vector2AnimProperty("_TileOffsetRotateMinMax", new Vector2(0, 0));
+            _opacityMinMax = new Vector2AnimProperty("_TileOffsetOpacityMinMax", new Vector2(1, 1));
             _randomSeed = new IntAnimProperty("_TileAndOffsetRandomSeed", 1);
+            _isRepeat = new BoolAnimProperty("_TileAndOffsetRepeat", false);
             _blend = Blend.Overwrite;
+            _backColor = new Color(0, 0, 0, 0);
         }
 
         public override void SetComputeShaderProperty(ComputeShader cs, int kernel)
@@ -40,8 +48,11 @@ namespace VFXTextureMaker
             cs.SetVector(_scaleMinMaxX.ID, new Vector4(_scaleMinMaxX.Value.x, _scaleMinMaxX.Value.y, 0, 0));
             cs.SetVector(_scaleMinMaxY.ID, new Vector4(_scaleMinMaxY.Value.x, _scaleMinMaxY.Value.y, 0, 0));
             cs.SetVector(_rotateMinMax.ID, new Vector4(_rotateMinMax.Value.x, _rotateMinMax.Value.y, 0, 0));
+            cs.SetVector(_opacityMinMax.ID, new Vector4(_opacityMinMax.Value.x, _opacityMinMax.Value.y, 0, 0));
             cs.SetInt(_randomSeed.ID, _randomSeed.Value);
+            cs.SetBool(_isRepeat.ID, _isRepeat.Value);
             cs.SetInt(BlendID, (int)_blend);
+            cs.SetVector(BackColorID, _backColor);
         }
 
         public override void SetComputeShaderPropertyAnim(ComputeShader cs, int kernel, int currentFrame)
@@ -123,6 +134,17 @@ namespace VFXTextureMaker
                 cs.SetVector(_rotateMinMax.ID, new Vector4(_rotateMinMax.Value.x, _rotateMinMax.Value.y, 0, 0));
             }
 
+            if (_opacityMinMax.IsAnim)
+            {
+                var valueX = _opacityMinMax.CurveX.Evaluate(currentFrame);
+                var valueY = _opacityMinMax.CurveY.Evaluate(currentFrame);
+                cs.SetVector(_opacityMinMax.ID, new Vector4(valueX, valueY, 0, 0));
+            }
+            else
+            {
+                cs.SetVector(_opacityMinMax.ID, new Vector4(_opacityMinMax.Value.x, _opacityMinMax.Value.y, 0, 0));
+            }
+
             if (_randomSeed.IsAnim)
             {
                 cs.SetInt(_randomSeed.ID, (int)_randomSeed.Curve.Evaluate(currentFrame));
@@ -132,7 +154,17 @@ namespace VFXTextureMaker
                 cs.SetInt(_randomSeed.ID, _randomSeed.Value);
             }
 
+            if (_isRepeat.IsAnim)
+            {
+                cs.SetBool(_isRepeat.ID, _isRepeat.Curve.Evaluate(currentFrame) >= 1);
+            }
+            else
+            {
+                cs.SetBool(_isRepeat.ID, _isRepeat.Value);
+            }
+
             cs.SetInt(BlendID, (int)_blend);
+            cs.SetVector(BackColorID, _backColor);
         }
 
         [Serializable]

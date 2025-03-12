@@ -44,12 +44,25 @@ namespace VFXTextureMaker
                 CustomGUIUtility.PropertyValueField(rect, rotateMinMax, new GUIContent("Rotate MinMax"));
                 rect.y += CustomGUIUtility.PropertyHeight;
 
+                var opacityMinMax = property.FindPropertyRelative("_opacityMinMax");
+                CustomGUIUtility.PropertyValueField(rect, opacityMinMax, new GUIContent("Opacity MinMax"));
+                rect.y += CustomGUIUtility.PropertyHeight;
+
                 var randomSeed = property.FindPropertyRelative("_randomSeed");
                 CustomGUIUtility.PropertyValueField(rect, randomSeed, new GUIContent("Random Seed"));
                 rect.y += CustomGUIUtility.PropertyHeight;
 
                 var blend = property.FindPropertyRelative("_blend");
                 CustomGUIUtility.PropertyField(rect, blend, new GUIContent("Blend Mode"));
+                rect.y += CustomGUIUtility.PropertyHeight;
+
+                var backColor = property.FindPropertyRelative("_backColor");
+                CustomGUIUtility.PropertyField(rect, backColor, new GUIContent("BackGround Color"));
+                rect.y += CustomGUIUtility.PropertyHeight;
+
+                var isRepeat = property.FindPropertyRelative("_isRepeat");
+                CustomGUIUtility.PropertyValueField(rect, isRepeat, new GUIContent("Repeat"));
+                
 
                 rect.xMin -= 10;
             }
@@ -95,12 +108,24 @@ namespace VFXTextureMaker
                 CustomGUIUtility.Vector2AnimField(rect, rotateMinMax, currentFrame, new GUIContent("Rotate MinMax"));
                 rect.y += CustomGUIUtility.PropertyHeight;
 
+                var opacityMinMax = property.FindPropertyRelative("_opacityMinMax");
+                CustomGUIUtility.Vector2AnimField(rect, opacityMinMax, currentFrame, new GUIContent("Opacity MinMax"));
+                rect.y += CustomGUIUtility.PropertyHeight;
+
                 var randomSeed = property.FindPropertyRelative("_randomSeed");
                 CustomGUIUtility.Vector2AnimField(rect, randomSeed, currentFrame, new GUIContent("Random Seed"));
                 rect.y += CustomGUIUtility.PropertyHeight;
 
                 var blend = property.FindPropertyRelative("_blend");
                 CustomGUIUtility.PropertyField(rect, blend, new GUIContent("Blend Mode"));
+                rect.y += CustomGUIUtility.PropertyHeight;
+
+                var backColor = property.FindPropertyRelative("_backColor");
+                CustomGUIUtility.PropertyField(rect, backColor, new GUIContent("BackGround Color"));
+                rect.y += CustomGUIUtility.PropertyHeight;
+
+                var isRepeat = property.FindPropertyRelative("_isRepeat");
+                CustomGUIUtility.BoolAnimField(rect, isRepeat, currentFrame, new GUIContent("Repeat"));
 
                 rect.xMin -= 10;
             }
@@ -114,7 +139,7 @@ namespace VFXTextureMaker
             var showOption = property.FindPropertyRelative("showOption");
             if (showOption.boolValue)
             {
-                height += CustomGUIUtility.PropertyHeight * 9;
+                height += CustomGUIUtility.PropertyHeight * 12;
             }
 
             height += CustomGUIUtility.LayerSpaceHeight;
