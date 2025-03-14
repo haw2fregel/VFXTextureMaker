@@ -473,6 +473,7 @@ namespace VFXTextureMaker
             menu.AddItem(new GUIContent("Displacement/Texture"), on: false, func: () => ChangeLayer(ShaderPass.Displacement_Texture, index));
             menu.AddItem(new GUIContent("Displacement/NormalMap"), on: false, func: () => ChangeLayer(ShaderPass.Displacement_NormalMap, index));
             menu.AddItem(new GUIContent("Displacement/Noise"), on: false, func: () => ChangeLayer(ShaderPass.Displacement_Noise, index));
+            menu.AddItem(new GUIContent("Displacement/TileAndOffset"), on: false, func: () => ChangeLayer(ShaderPass.Displacement_TileAndOffset, index));
             menu.AddItem(new GUIContent("Filter/Blur"), on: false, func: () => ChangeLayer(ShaderPass.Filter_Blur, index));
             menu.AddItem(new GUIContent("Filter/GradationSample"), on: false, func: () => ChangeLayer(ShaderPass.Filter_GradationSample, index));
             menu.AddItem(new GUIContent("Filter/Glow"), on: false, func: () => ChangeLayer(ShaderPass.Filter_Glow, index));
@@ -502,6 +503,7 @@ namespace VFXTextureMaker
             menu.AddItem(new GUIContent("Displacement/Texture"), on: false, func: () => AddLayer(new Layer(list.count, ShaderPass.Displacement_Texture)));
             menu.AddItem(new GUIContent("Displacement/NormalMap"), on: false, func: () => AddLayer(new Layer(list.count, ShaderPass.Displacement_NormalMap)));
             menu.AddItem(new GUIContent("Displacement/Noise"), on: false, func: () => AddLayer(new Layer(list.count, ShaderPass.Displacement_Noise)));
+            menu.AddItem(new GUIContent("Displacement/TileAndOffset"), on: false, func: () => AddLayer(new Layer(list.count, ShaderPass.Displacement_TileAndOffset)));
             menu.AddItem(new GUIContent("Filter/Blur"), on: false, func: () => AddLayer(new Layer(list.count, ShaderPass.Filter_Blur)));
             menu.AddItem(new GUIContent("Filter/GradationSample"), on: false, func: () => AddLayer(new Layer(list.count, ShaderPass.Filter_GradationSample)));
             menu.AddItem(new GUIContent("Filter/Glow"), on: false, func: () => AddLayer(new Layer(list.count, ShaderPass.Filter_Glow)));

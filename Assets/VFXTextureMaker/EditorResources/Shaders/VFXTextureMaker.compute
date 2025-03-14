@@ -18,6 +18,7 @@
 #pragma kernel Displacement_Noise_DistanceNoise
 #pragma kernel Displacement_Noise_Voronoi
 #pragma kernel Displacement_Noise_VoronoiEdge
+#pragma kernel Displacement_TileAndOffset
 #pragma kernel Draw_Shape_DistancePower
 #pragma kernel Draw_Shape_Polygon
 #pragma kernel Filter_Blur_Gausian
@@ -50,6 +51,7 @@ float4 _DrawColor;
 #include "OpGradation.cginc"
 #include "OpGlow.cginc"
 #include "OpColorBalance.cginc"
+#include "OpTileAndOffset.cginc"
 
 
 [numthreads(1, 1, 1)]
@@ -338,6 +340,25 @@ void Displacement_Noise_VoronoiEdge(uint3 id : SV_DispatchThreadID)
     if (ids.x >= int(_Resolution.x) || ids.y >= int(_Resolution.y)) return;
     float2 displacement = VoronoiEdge(UVRepeat(UVBend(UVPolar(UVRotate(UVScale(IdToUV(ids))))))).xx - float2(0.5, 0.5);;
     float4 col = Displacement(IdToUV(ids), displacement);
+    
+    _Result[ids] = col;
+}
+
+[numthreads(1, 1, 1)]
+void Displacement_TileAndOffset(uint3 id : SV_DispatchThreadID)
+{
+    int2 ids = int2(asint(id.x), asint(id.y));
+    if (ids.x >= int(_Resolution.x) || ids.y >= int(_Resolution.y)) return;
+    float4 col = _Buffer[ids];
+    float4 drawCol = TileAndOffset(ids);
+    if (_Maskable)
+    {
+        col = Blend(col, drawCol, _MaskTex[ids]);
+    }
+    else
+    {
+        col = Blend(col, drawCol);
+    }
     
     _Result[ids] = col;
 }
