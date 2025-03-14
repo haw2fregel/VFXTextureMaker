@@ -15,7 +15,6 @@ namespace VFXTextureMaker
         [SerializeField] Vector2AnimProperty _rotateMinMax;
         [SerializeField] Vector2AnimProperty _opacityMinMax;
         [SerializeField] IntAnimProperty _randomSeed;
-        [SerializeField] BoolAnimProperty _isRepeat;
 
         [SerializeField] Blend _blend;
         readonly int BlendID = Shader.PropertyToID("_TileAndOffsetBlendMode");
@@ -34,7 +33,6 @@ namespace VFXTextureMaker
             _rotateMinMax = new Vector2AnimProperty("_TileOffsetRotateMinMax", new Vector2(0, 0));
             _opacityMinMax = new Vector2AnimProperty("_TileOffsetOpacityMinMax", new Vector2(1, 1));
             _randomSeed = new IntAnimProperty("_TileAndOffsetRandomSeed", 1);
-            _isRepeat = new BoolAnimProperty("_TileAndOffsetRepeat", false);
             _blend = Blend.Overwrite;
             _backColor = new Color(0, 0, 0, 0);
         }
@@ -50,7 +48,6 @@ namespace VFXTextureMaker
             cs.SetVector(_rotateMinMax.ID, new Vector4(_rotateMinMax.Value.x, _rotateMinMax.Value.y, 0, 0));
             cs.SetVector(_opacityMinMax.ID, new Vector4(_opacityMinMax.Value.x, _opacityMinMax.Value.y, 0, 0));
             cs.SetInt(_randomSeed.ID, _randomSeed.Value);
-            cs.SetBool(_isRepeat.ID, _isRepeat.Value);
             cs.SetInt(BlendID, (int)_blend);
             cs.SetVector(BackColorID, _backColor);
         }
@@ -152,15 +149,6 @@ namespace VFXTextureMaker
             else
             {
                 cs.SetInt(_randomSeed.ID, _randomSeed.Value);
-            }
-
-            if (_isRepeat.IsAnim)
-            {
-                cs.SetBool(_isRepeat.ID, _isRepeat.Curve.Evaluate(currentFrame) >= 1);
-            }
-            else
-            {
-                cs.SetBool(_isRepeat.ID, _isRepeat.Value);
             }
 
             cs.SetInt(BlendID, (int)_blend);

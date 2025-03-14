@@ -7,7 +7,6 @@ float2 _TileOffsetScaleMinMaxY;
 float2 _TileOffsetRotateMinMax;
 float2 _TileOffsetOpacityMinMax;
 int _TileAndOffsetBlendMode;
-bool _TileAndOffsetRepeat;
 int _TileAndOffsetRandomSeed;
 float4 _TileAndOffsetBackColor;
 
@@ -42,11 +41,10 @@ float4 TileAndOffset(int2 id)
             rotate = RandomRemap(hash21(randomseed + 6), _TileOffsetRotateMinMax.x, _TileOffsetRotateMinMax.y);
             opacity = RandomRemap(hash21(randomseed + 7), _TileOffsetOpacityMinMax.x, _TileOffsetOpacityMinMax.y);
             
-            uv = UVRotate(uv, float2(0.5, 0.5) ,rotate);
-            offset = UVRotate(float2(x, y) - 2 + (1 - count % 2.0) / 2.0 + offset, float2(0, 0) ,rotate);
+            offset = float2(x, y) - 2 + (1 - count % 2.0) / 2.0 + offset;
             uv = ((uv - 0.5) / scale ) * count + 0.5 - (offset) / scale;
-            uv = UVRotate(modulo(UVRotate(uv, float2(0.5, 0.5) ,-rotate) , count / scale), float2(0.5, 0.5) ,rotate);
-            int2 intId = UVToID(_TileAndOffsetRepeat ? frac(uv): saturate(uv));
+            uv = UVRotate(modulo(uv, count / scale), float2(0.5, 0.5) ,rotate);
+            int2 intId = UVToID(saturate(uv));
             uint2 uintId = uint2(asuint(intId.x), asint(intId.y));
             result = Blend(result, _Buffer[uintId], _TileAndOffsetBlendMode, opacity);
         }

@@ -58,10 +58,6 @@ namespace VFXTextureMaker
 
                 var backColor = property.FindPropertyRelative("_backColor");
                 CustomGUIUtility.PropertyField(rect, backColor, new GUIContent("BackGround Color"));
-                rect.y += CustomGUIUtility.PropertyHeight;
-
-                var isRepeat = property.FindPropertyRelative("_isRepeat");
-                CustomGUIUtility.PropertyValueField(rect, isRepeat, new GUIContent("Repeat"));
                 
 
                 rect.xMin -= 10;
@@ -122,10 +118,6 @@ namespace VFXTextureMaker
 
                 var backColor = property.FindPropertyRelative("_backColor");
                 CustomGUIUtility.PropertyField(rect, backColor, new GUIContent("BackGround Color"));
-                rect.y += CustomGUIUtility.PropertyHeight;
-
-                var isRepeat = property.FindPropertyRelative("_isRepeat");
-                CustomGUIUtility.BoolAnimField(rect, isRepeat, currentFrame, new GUIContent("Repeat"));
 
                 rect.xMin -= 10;
             }
@@ -139,7 +131,7 @@ namespace VFXTextureMaker
             var showOption = property.FindPropertyRelative("showOption");
             if (showOption.boolValue)
             {
-                height += CustomGUIUtility.PropertyHeight * 12;
+                height += CustomGUIUtility.PropertyHeight * 11;
             }
 
             height += CustomGUIUtility.LayerSpaceHeight;
