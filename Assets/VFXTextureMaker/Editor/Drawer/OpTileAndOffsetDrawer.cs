@@ -49,7 +49,7 @@ namespace VFXTextureMaker
                 rect.y += CustomGUIUtility.PropertyHeight;
 
                 var randomSeed = property.FindPropertyRelative("_randomSeed");
-                CustomGUIUtility.PropertyValueField(rect, randomSeed, new GUIContent("Random Seed"));
+                CustomGUIUtility.IntField(rect, randomSeed, new GUIContent("Random Seed"));
                 rect.y += CustomGUIUtility.PropertyHeight;
 
                 var blend = property.FindPropertyRelative("_blend");
@@ -109,7 +109,7 @@ namespace VFXTextureMaker
                 rect.y += CustomGUIUtility.PropertyHeight;
 
                 var randomSeed = property.FindPropertyRelative("_randomSeed");
-                CustomGUIUtility.Vector2AnimField(rect, randomSeed, currentFrame, new GUIContent("Random Seed"));
+                CustomGUIUtility.IntAnimField(rect, randomSeed, currentFrame, new GUIContent("Random Seed"));
                 rect.y += CustomGUIUtility.PropertyHeight;
 
                 var blend = property.FindPropertyRelative("_blend");
