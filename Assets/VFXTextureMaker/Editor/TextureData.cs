@@ -45,6 +45,11 @@ namespace VFXTextureMaker
             return _layerList[index].MaskedLayer;
         }
 
+        public bool GetMaskedEnableAtIndex(int index)
+        {
+            return _layerList[index].Masked;
+        }
+
         public bool GetVisibleAtIndex(int index)
         {
             return _layerList[index].Visible;
@@ -189,7 +194,7 @@ namespace VFXTextureMaker
                     if (_layerList[i].CustomShader.CustomMaterial != null)
                     {
                         var customMaterial = Instantiate(_layerList[i].CustomShader.CustomMaterial);
-                        if (GetMaskedLayerAtIndex(i) != -1)
+                        if (GetMaskedLayerAtIndex(i) != -1 && GetMaskedEnableAtIndex(i))
                         {
                             customMaterial.SetTexture(MaskTexID, GetSingleTexture(GetMaskedLayerAtIndex(i)));
                         }
@@ -212,7 +217,7 @@ namespace VFXTextureMaker
                     cs_instance.SetTexture(kernelID, ResultID, _resultRT);
                     cs_instance.SetTexture(kernelID, BufferID, _bufferRT);
 
-                    if (GetMaskedLayerAtIndex(i) != -1)
+                    if (GetMaskedLayerAtIndex(i) != -1 && GetMaskedEnableAtIndex(i))
                     {
                         cs_instance.SetTexture(kernelID, MaskTexID, GetSingleTexture(GetMaskedLayerAtIndex(i)));
                         cs_instance.SetBool(MaskableID, true);
@@ -315,7 +320,7 @@ namespace VFXTextureMaker
                         if (_layerList[j].CustomShader.CustomMaterial != null)
                         {
                             var customMaterial = Instantiate(_layerList[j].CustomShader.CustomMaterial);
-                            if (GetMaskedLayerAtIndex(j) != -1)
+                            if (GetMaskedLayerAtIndex(j) != -1 && GetMaskedEnableAtIndex(j))
                             {
                                 customMaterial.SetTexture(MaskTexID, GetSingleTexture(GetMaskedLayerAtIndex(j)));
                             }
@@ -337,7 +342,7 @@ namespace VFXTextureMaker
                         cs_instance.SetTexture(kernelID, ResultID, _resultRT);
                         cs_instance.SetTexture(kernelID, BufferID, _bufferRT);
 
-                        if (GetMaskedLayerAtIndex(j) != -1)
+                        if (GetMaskedLayerAtIndex(j) != -1 && GetMaskedEnableAtIndex(j))
                         {
                             cs_instance.SetTexture(kernelID, MaskTexID, GetSingleTexture(GetMaskedLayerAtIndex(j)));
                             cs_instance.SetBool(MaskableID, true);
