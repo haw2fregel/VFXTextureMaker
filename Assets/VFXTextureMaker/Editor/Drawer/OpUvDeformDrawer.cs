@@ -21,7 +21,7 @@ namespace VFXTextureMaker
                 rect.y += CustomGUIUtility.PropertyHeight;
 
                 var uvScale = property.FindPropertyRelative("_uvScale");
-                CustomGUIUtility.PropertyValueField(rect, uvScale, new GUIContent("Scale"));
+                CustomGUIUtility.PropertyValueField(rect, uvScale, new GUIContent("Tile"));
                 rect.y += CustomGUIUtility.PropertyHeight;
 
                 var uvRotate = property.FindPropertyRelative("_uvRotate");
@@ -60,7 +60,7 @@ namespace VFXTextureMaker
                 rect.y += CustomGUIUtility.PropertyHeight;
 
                 var uvScale = property.FindPropertyRelative("_uvScale");
-                CustomGUIUtility.Vector2AnimField(rect, uvScale, currentFrame, new GUIContent("Scale"));
+                CustomGUIUtility.Vector2AnimField(rect, uvScale, currentFrame, new GUIContent("Tile"));
                 rect.y += CustomGUIUtility.PropertyHeight;
 
                 var uvRotate = property.FindPropertyRelative("_uvRotate");
