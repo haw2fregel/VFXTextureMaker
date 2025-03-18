@@ -16,7 +16,7 @@ float4 Blend(float4 baseColor, float4 drawColor, float4 maskColor = float4(1, 1,
     drawColor = saturate(drawColor);
     drawColor = _IsOneMinus ? float4(1, 1, 1, 1) - drawColor : drawColor;
     drawColor = pow(drawColor, _OpacityPower.xxxx);
-    drawColor = Contrast(drawColor, 0.0);
+    drawColor = Contrast(drawColor, 0.5);
 
     float4 col = lerp(drawColor.xxxx, drawColor.yyyy, step(float4(1, 1, 1, 1), _DrawChannel));
     col = lerp(col, drawColor.zzzz, step(float4(2, 2, 2, 2), _DrawChannel));
