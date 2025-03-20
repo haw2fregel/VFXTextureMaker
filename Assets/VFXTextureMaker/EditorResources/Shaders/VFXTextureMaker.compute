@@ -18,7 +18,7 @@
 #pragma kernel Displacement_Noise_DistanceNoise
 #pragma kernel Displacement_Noise_Voronoi
 #pragma kernel Displacement_Noise_VoronoiEdge
-#pragma kernel Displacement_TileAndOffset
+#pragma kernel Draw_TileAndOffset
 #pragma kernel Draw_Shape_DistancePower
 #pragma kernel Draw_Shape_Polygon
 #pragma kernel Filter_Blur_Gausian
@@ -345,7 +345,7 @@ void Displacement_Noise_VoronoiEdge(uint3 id : SV_DispatchThreadID)
 }
 
 [numthreads(1, 1, 1)]
-void Displacement_TileAndOffset(uint3 id : SV_DispatchThreadID)
+void Draw_TileAndOffset(uint3 id : SV_DispatchThreadID)
 {
     int2 ids = int2(asint(id.x), asint(id.y));
     if (ids.x >= int(_Resolution.x) || ids.y >= int(_Resolution.y)) return;

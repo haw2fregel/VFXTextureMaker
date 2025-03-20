@@ -354,7 +354,7 @@ namespace VFXTextureMaker
                     _tileAndOffset.Active = false;
                     _customShader.Active = false;
                     break;
-                case ShaderPass.Displacement_TileAndOffset:
+                case ShaderPass.Draw_TileAndOffset:
                     _draw.Active = false;
                     _opacity.Active = true;
                     _displacement.Active = false;
