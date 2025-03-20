@@ -469,11 +469,11 @@ namespace VFXTextureMaker
             menu.AddItem(new GUIContent("Draw/Texture"), on: false, func: () => ChangeLayer(ShaderPass.Draw_Texture, index));
             menu.AddItem(new GUIContent("Draw/Noise"), on: false, func: () => ChangeLayer(ShaderPass.Draw_Noise, index));
             menu.AddItem(new GUIContent("Draw/Shape"), on: false, func: () => ChangeLayer(ShaderPass.Draw_Shape, index));
+            menu.AddItem(new GUIContent("Draw/TileAndOffset"), on: false, func: () => ChangeLayer(ShaderPass.Draw_TileAndOffset, index));
             menu.AddItem(new GUIContent("Displacement/Displacement"), on: false, func: () => ChangeLayer(ShaderPass.Displacement_Displacement, index));
             menu.AddItem(new GUIContent("Displacement/Texture"), on: false, func: () => ChangeLayer(ShaderPass.Displacement_Texture, index));
             menu.AddItem(new GUIContent("Displacement/NormalMap"), on: false, func: () => ChangeLayer(ShaderPass.Displacement_NormalMap, index));
             menu.AddItem(new GUIContent("Displacement/Noise"), on: false, func: () => ChangeLayer(ShaderPass.Displacement_Noise, index));
-            menu.AddItem(new GUIContent("Displacement/TileAndOffset"), on: false, func: () => ChangeLayer(ShaderPass.Displacement_TileAndOffset, index));
             menu.AddItem(new GUIContent("Filter/Blur"), on: false, func: () => ChangeLayer(ShaderPass.Filter_Blur, index));
             menu.AddItem(new GUIContent("Filter/GradationSample"), on: false, func: () => ChangeLayer(ShaderPass.Filter_GradationSample, index));
             menu.AddItem(new GUIContent("Filter/Glow"), on: false, func: () => ChangeLayer(ShaderPass.Filter_Glow, index));
@@ -499,11 +499,11 @@ namespace VFXTextureMaker
             menu.AddItem(new GUIContent("Draw/Texture"), on: false, func: () => AddLayer(new Layer(list.count, ShaderPass.Draw_Texture)));
             menu.AddItem(new GUIContent("Draw/Noise"), on: false, func: () => AddLayer(new Layer(list.count, ShaderPass.Draw_Noise)));
             menu.AddItem(new GUIContent("Draw/Shape"), on: false, func: () => AddLayer(new Layer(list.count, ShaderPass.Draw_Shape)));
+            menu.AddItem(new GUIContent("Draw/TileAndOffset"), on: false, func: () => AddLayer(new Layer(list.count, ShaderPass.Draw_TileAndOffset)));
             menu.AddItem(new GUIContent("Displacement/Displacement"), on: false, func: () => AddLayer(new Layer(list.count, ShaderPass.Displacement_Displacement)));
             menu.AddItem(new GUIContent("Displacement/Texture"), on: false, func: () => AddLayer(new Layer(list.count, ShaderPass.Displacement_Texture)));
             menu.AddItem(new GUIContent("Displacement/NormalMap"), on: false, func: () => AddLayer(new Layer(list.count, ShaderPass.Displacement_NormalMap)));
             menu.AddItem(new GUIContent("Displacement/Noise"), on: false, func: () => AddLayer(new Layer(list.count, ShaderPass.Displacement_Noise)));
-            menu.AddItem(new GUIContent("Displacement/TileAndOffset"), on: false, func: () => AddLayer(new Layer(list.count, ShaderPass.Displacement_TileAndOffset)));
             menu.AddItem(new GUIContent("Filter/Blur"), on: false, func: () => AddLayer(new Layer(list.count, ShaderPass.Filter_Blur)));
             menu.AddItem(new GUIContent("Filter/GradationSample"), on: false, func: () => AddLayer(new Layer(list.count, ShaderPass.Filter_GradationSample)));
             menu.AddItem(new GUIContent("Filter/Glow"), on: false, func: () => AddLayer(new Layer(list.count, ShaderPass.Filter_Glow)));

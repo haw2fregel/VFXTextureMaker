@@ -21,11 +21,11 @@ namespace VFXTextureMaker
                 rect.y += CustomGUIUtility.PropertyHeight;
 
                 var posMinMaxX = property.FindPropertyRelative("_posMinMaxX");
-                CustomGUIUtility.PropertyValueField(rect, posMinMaxX, new GUIContent("Position MinMax X"));
+                CustomGUIUtility.PropertyValueField(rect, posMinMaxX, new GUIContent("Pos MinMax X"));
                 rect.y += CustomGUIUtility.PropertyHeight;
 
                 var posMinMaxY = property.FindPropertyRelative("_posMinMaxY");
-                CustomGUIUtility.PropertyValueField(rect, posMinMaxY, new GUIContent("Position MinMax Y"));
+                CustomGUIUtility.PropertyValueField(rect, posMinMaxY, new GUIContent("Pos MinMax Y"));
                 rect.y += CustomGUIUtility.PropertyHeight;
 
                 var scaleMinMax = property.FindPropertyRelative("_scaleMinMax");
@@ -81,11 +81,11 @@ namespace VFXTextureMaker
                 rect.y += CustomGUIUtility.PropertyHeight;
 
                 var posMinMaxX = property.FindPropertyRelative("_posMinMaxX");
-                CustomGUIUtility.Vector2AnimField(rect, posMinMaxX, currentFrame, new GUIContent("Position MinMax X"));
+                CustomGUIUtility.Vector2AnimField(rect, posMinMaxX, currentFrame, new GUIContent("Pos MinMax X"));
                 rect.y += CustomGUIUtility.PropertyHeight;
 
                 var posMinMaxY = property.FindPropertyRelative("_posMinMaxY");
-                CustomGUIUtility.Vector2AnimField(rect, posMinMaxY, currentFrame, new GUIContent("Position MinMax Y"));
+                CustomGUIUtility.Vector2AnimField(rect, posMinMaxY, currentFrame, new GUIContent("Pos MinMax Y"));
                 rect.y += CustomGUIUtility.PropertyHeight;
 
                 var scaleMinMax = property.FindPropertyRelative("_scaleMinMax");
