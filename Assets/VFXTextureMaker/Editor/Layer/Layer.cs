@@ -76,6 +76,7 @@ namespace VFXTextureMaker
         [SerializeField] OpGlow _glow;
         [SerializeField] OpColorBalance _colorBalance;
         [SerializeField] OpTileAndOffset _tileAndOffset;
+        [SerializeField] OpPosterize _posterize;
         [SerializeField] OpCustomShader _customShader;
         public OpCustomShader CustomShader => _customShader;
 
@@ -98,6 +99,7 @@ namespace VFXTextureMaker
             _glow = new OpGlow();
             _colorBalance ??= new OpColorBalance();
             _tileAndOffset ??= new OpTileAndOffset();
+            _posterize ??= new OpPosterize();
             _customShader ??= new OpCustomShader();
 
             _masked = false;
@@ -123,6 +125,7 @@ namespace VFXTextureMaker
             _glow ??= new OpGlow();
             _colorBalance ??= new OpColorBalance();
             _tileAndOffset ??= new OpTileAndOffset();
+            _posterize ??= new OpPosterize();
             _customShader ??= new OpCustomShader();
             SetPass(_shaderPass);
         }
@@ -157,6 +160,7 @@ namespace VFXTextureMaker
                     _glow.Active = false;
                     _colorBalance.Active = false;
                     _tileAndOffset.Active = false;
+                    _posterize.Active = false;
                     _customShader.Active = false;
                     break;
                 case ShaderPass.Draw_Texture:
@@ -172,6 +176,7 @@ namespace VFXTextureMaker
                     _glow.Active = false;
                     _colorBalance.Active = false;
                     _tileAndOffset.Active = false;
+                    _posterize.Active = false;
                     _customShader.Active = false;
                     break;
                 case ShaderPass.Displacement_Texture:
@@ -187,6 +192,7 @@ namespace VFXTextureMaker
                     _glow.Active = false;
                     _colorBalance.Active = false;
                     _tileAndOffset.Active = false;
+                    _posterize.Active = false;
                     _customShader.Active = false;
                     break;
                 case ShaderPass.Displacement_NormalMap:
@@ -202,6 +208,7 @@ namespace VFXTextureMaker
                     _glow.Active = false;
                     _colorBalance.Active = false;
                     _tileAndOffset.Active = false;
+                    _posterize.Active = false;
                     _customShader.Active = false;
                     break;
                 case ShaderPass.Draw_Noise:
@@ -217,6 +224,7 @@ namespace VFXTextureMaker
                     _glow.Active = false;
                     _colorBalance.Active = false;
                     _tileAndOffset.Active = false;
+                    _posterize.Active = false;
                     _customShader.Active = false;
                     break;
                 case ShaderPass.Displacement_Noise:
@@ -232,6 +240,7 @@ namespace VFXTextureMaker
                     _glow.Active = false;
                     _colorBalance.Active = false;
                     _tileAndOffset.Active = false;
+                    _posterize.Active = false;
                     _customShader.Active = false;
                     break;
                 case ShaderPass.Draw_Shape:
@@ -247,6 +256,7 @@ namespace VFXTextureMaker
                     _glow.Active = false;
                     _colorBalance.Active = false;
                     _tileAndOffset.Active = false;
+                    _posterize.Active = false;
                     _customShader.Active = false;
                     break;
                 case ShaderPass.Filter_Blur:
@@ -262,6 +272,7 @@ namespace VFXTextureMaker
                     _glow.Active = false;
                     _colorBalance.Active = false;
                     _tileAndOffset.Active = false;
+                    _posterize.Active = false;
                     _customShader.Active = false;
                     break;
                 case ShaderPass.Filter_GradationSample:
@@ -277,6 +288,7 @@ namespace VFXTextureMaker
                     _glow.Active = false;
                     _colorBalance.Active = false;
                     _tileAndOffset.Active = false;
+                    _posterize.Active = false;
                     _customShader.Active = false;
                     break;
                 case ShaderPass.Filter_Glow:
@@ -292,6 +304,7 @@ namespace VFXTextureMaker
                     _glow.Active = true;
                     _colorBalance.Active = false;
                     _tileAndOffset.Active = false;
+                    _posterize.Active = false;
                     _customShader.Active = false;
                     break;
                 case ShaderPass.Filter_ColorBalance:
@@ -307,6 +320,7 @@ namespace VFXTextureMaker
                     _glow.Active = false;
                     _colorBalance.Active = true;
                     _tileAndOffset.Active = false;
+                    _posterize.Active = false;
                     _customShader.Active = false;
                     break;
                 case ShaderPass.CustomShader:
@@ -322,6 +336,7 @@ namespace VFXTextureMaker
                     _glow.Active = false;
                     _colorBalance.Active = false;
                     _tileAndOffset.Active = false;
+                    _posterize.Active = false;
                     _customShader.Active = true;
                     break;
                 case ShaderPass.Draw_Draw:
@@ -337,6 +352,7 @@ namespace VFXTextureMaker
                     _glow.Active = false;
                     _colorBalance.Active = false;
                     _tileAndOffset.Active = false;
+                    _posterize.Active = false;
                     _customShader.Active = false;
                     break;
                 case ShaderPass.Displacement_Displacement:
@@ -352,6 +368,7 @@ namespace VFXTextureMaker
                     _glow.Active = false;
                     _colorBalance.Active = false;
                     _tileAndOffset.Active = false;
+                    _posterize.Active = false;
                     _customShader.Active = false;
                     break;
                 case ShaderPass.Draw_TileAndOffset:
@@ -367,6 +384,23 @@ namespace VFXTextureMaker
                     _glow.Active = false;
                     _colorBalance.Active = false;
                     _tileAndOffset.Active = true;
+                    _posterize.Active = false;
+                    _customShader.Active = false;
+                    break;
+                case ShaderPass.Filter_Posterize:
+                    _draw.Active = false;
+                    _opacity.Active = false;
+                    _displacement.Active = false;
+                    _noise.Active = false; ;
+                    _texture.Active = false;
+                    _uvDeform.Active = false;
+                    _blur.Active = false;
+                    _shape.Active = false;
+                    _gradient.Active = false;
+                    _glow.Active = false;
+                    _colorBalance.Active = false;
+                    _tileAndOffset.Active = false;
+                    _posterize.Active = true;
                     _customShader.Active = false;
                     break;
             }
@@ -386,6 +420,7 @@ namespace VFXTextureMaker
             if (_glow.Active) _glow.SetComputeShaderProperty(cs, kernel);
             if (_colorBalance.Active) _colorBalance.SetComputeShaderProperty(cs, kernel);
             if (_tileAndOffset.Active) _tileAndOffset.SetComputeShaderProperty(cs, kernel);
+            if (_posterize.Active) _posterize.SetComputeShaderProperty(cs, kernel);
         }
 
         public void SetComputeShaderPropertyAnim(ComputeShader cs, int kernel, int currentFrame)
@@ -402,6 +437,7 @@ namespace VFXTextureMaker
             if (_glow.Active) _glow.SetComputeShaderPropertyAnim(cs, kernel, currentFrame);
             if (_colorBalance.Active) _colorBalance.SetComputeShaderPropertyAnim(cs, kernel, currentFrame);
             if (_tileAndOffset.Active) _tileAndOffset.SetComputeShaderPropertyAnim(cs, kernel, currentFrame);
+            if (_posterize.Active) _posterize.SetComputeShaderPropertyAnim(cs, kernel, currentFrame);
         }
     }
 }

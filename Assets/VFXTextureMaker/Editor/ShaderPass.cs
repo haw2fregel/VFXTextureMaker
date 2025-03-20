@@ -19,6 +19,7 @@ namespace VFXTextureMaker
         CustomShader,
         Draw_Draw,
         Displacement_Displacement,
-        Draw_TileAndOffset
+        Draw_TileAndOffset,
+        Filter_Posterize
     }
 }

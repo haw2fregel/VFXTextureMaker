@@ -28,6 +28,7 @@
 #pragma kernel Filter_GradationSample
 #pragma kernel Filter_Glow
 #pragma kernel Filter_ColorBalance
+#pragma kernel Filter_Posterize
 
 
 RWTexture2D<float4> _Result;
@@ -52,6 +53,7 @@ float4 _DrawColor;
 #include "OpGlow.cginc"
 #include "OpColorBalance.cginc"
 #include "OpTileAndOffset.cginc"
+#include "OpPosterize.cginc"
 
 
 [numthreads(1, 1, 1)]
@@ -492,6 +494,17 @@ void Filter_ColorBalance(uint3 id : SV_DispatchThreadID)
     if (ids.x >= int(_Resolution.x) || ids.y >= int(_Resolution.y)) return;
     float4 col = _Buffer[ids];
     col.xyz = ColorBalance(col.xyz);
+    
+    _Result[ids] = col;
+}
+
+[numthreads(1, 1, 1)]
+void Filter_Posterize(uint3 id : SV_DispatchThreadID)
+{
+    int2 ids = int2(asint(id.x), asint(id.y));
+    if (ids.x >= int(_Resolution.x) || ids.y >= int(_Resolution.y)) return;
+    float4 col = _Buffer[ids];
+    col = Posterize(col);
     
     _Result[ids] = col;
 }
