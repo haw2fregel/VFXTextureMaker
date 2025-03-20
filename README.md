@@ -1,5 +1,3 @@
-# VFXTextureMaker
-
 ![VFXTextureMaker](https://github.com/user-attachments/assets/8ece8d76-6e14-4779-af8a-61d06a825d69)
 
 
