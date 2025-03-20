@@ -130,6 +130,14 @@ namespace VFXTextureMaker
                     rect.y += OpTileAndOffsetDrawer.GetPropertyHeight(tileAndOffset);
                 }
 
+                var posterize = property.FindPropertyRelative("_posterize");
+                var posterizeActive = posterize.FindPropertyRelative("active");
+                if (posterizeActive.boolValue)
+                {
+                    OpPosterizeDrawer.DrawProperty(rect, posterize, label);
+                    rect.y += OpPosterizeDrawer.GetPropertyHeight(posterize);
+                }
+
                 var customShader = property.FindPropertyRelative("_customShader");
                 var customShaderActive = customShader.FindPropertyRelative("active");
                 if (customShaderActive.boolValue)
@@ -255,6 +263,14 @@ namespace VFXTextureMaker
                     rect.y += OpTileAndOffsetDrawer.GetPropertyHeight(tileAndOffset);
                 }
 
+                var posterize = property.FindPropertyRelative("_posterize");
+                var posterizeActive = posterize.FindPropertyRelative("active");
+                if (posterizeActive.boolValue)
+                {
+                    OpPosterizeDrawer.DrawPropertyAnim(rect, posterize, currentFrame.intValue, label);
+                    rect.y += OpPosterizeDrawer.GetPropertyHeight(posterize);
+                }
+
                 var customShader = property.FindPropertyRelative("_customShader");
                 var customShaderActive = customShader.FindPropertyRelative("active");
                 if (customShaderActive.boolValue)
@@ -352,6 +368,13 @@ namespace VFXTextureMaker
             if (tileAndOffsetActive.boolValue)
             {
                 height += OpTileAndOffsetDrawer.GetPropertyHeight(tileAndOffset);
+            }
+
+            var posterize = property.FindPropertyRelative("_posterize");
+            var posterizeActive = posterize.FindPropertyRelative("active");
+            if (posterizeActive.boolValue)
+            {
+                height += OpPosterizeDrawer.GetPropertyHeight(posterize);
             }
 
             var customShader = property.FindPropertyRelative("_customShader");

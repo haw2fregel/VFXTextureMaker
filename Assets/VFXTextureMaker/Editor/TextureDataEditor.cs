@@ -478,6 +478,7 @@ namespace VFXTextureMaker
             menu.AddItem(new GUIContent("Filter/GradationSample"), on: false, func: () => ChangeLayer(ShaderPass.Filter_GradationSample, index));
             menu.AddItem(new GUIContent("Filter/Glow"), on: false, func: () => ChangeLayer(ShaderPass.Filter_Glow, index));
             menu.AddItem(new GUIContent("Filter/ColorBalance"), on: false, func: () => ChangeLayer(ShaderPass.Filter_ColorBalance, index));
+            menu.AddItem(new GUIContent("Filter/Posterize"), on: false, func: () => ChangeLayer(ShaderPass.Filter_Posterize, index));
             menu.AddItem(new GUIContent("CustomShader"), on: false, func: () => ChangeLayer(ShaderPass.CustomShader, index));
 
             menu.DropDown(buttonRect);
@@ -508,6 +509,7 @@ namespace VFXTextureMaker
             menu.AddItem(new GUIContent("Filter/GradationSample"), on: false, func: () => AddLayer(new Layer(list.count, ShaderPass.Filter_GradationSample)));
             menu.AddItem(new GUIContent("Filter/Glow"), on: false, func: () => AddLayer(new Layer(list.count, ShaderPass.Filter_Glow)));
             menu.AddItem(new GUIContent("Filter/ColorBalance"), on: false, func: () => AddLayer(new Layer(list.count, ShaderPass.Filter_ColorBalance)));
+            menu.AddItem(new GUIContent("Filter/Posterize"), on: false, func: () => AddLayer(new Layer(list.count, ShaderPass.Filter_Posterize)));
             menu.AddItem(new GUIContent("CustomShader"), on: false, func: () => AddLayer(new Layer(list.count, ShaderPass.CustomShader)));
 
             menu.DropDown(buttonRect);
