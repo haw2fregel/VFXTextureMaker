@@ -180,7 +180,7 @@ namespace VFXTextureMaker
                     _customShader.Active = false;
                     break;
                 case ShaderPass.Displacement_Texture:
-                    _draw.Active = true;
+                    _draw.Active = false;
                     _opacity.Active = false;
                     _displacement.Active = true;
                     _noise.Active = false;
